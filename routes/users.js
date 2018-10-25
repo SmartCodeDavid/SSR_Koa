@@ -41,15 +41,28 @@ router.post('/getPerson', async function(ctx) {
 })
 
 router.post('/updatePerson', async function (ctx) {
+  let startTime = new Date().toLocaleString()
+
   const result = await Person.where({
     name: ctx.request.body.name
   }).update({
     name: ctx.request.body.newName,
     age: ctx.request.body.newAge
-  })
+  }).then(async data => {
+    return await new Promise((resolve, reject) => {
+      const id = setTimeout(() => {
+        clearTimeout(id);
+        console.log(data)
+        resolve(data)
+      }, 2000);
+    })
+  }).then( data => {return data}) 
 
+  let endTime = new Date().toLocaleString()
+  
   ctx.body = {
-    code: 0,
+    startTime,
+    endTime,
     result,
   }
 })
