@@ -24,7 +24,6 @@ router.get('/testasync', async (ctx, next) => {
       clearTimeout(id)
     }, 1000);
   })
-  
   ctx.body = a
 })
 
