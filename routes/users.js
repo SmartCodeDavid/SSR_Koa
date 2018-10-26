@@ -52,7 +52,6 @@ router.post('/updatePerson', async function (ctx) {
     return await new Promise((resolve, reject) => {
       const id = setTimeout(() => {
         clearTimeout(id);
-        console.log(data)
         resolve(data)
       }, 2000);
     })

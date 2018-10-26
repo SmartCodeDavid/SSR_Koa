@@ -15,9 +15,19 @@ const dbConfig = require('./dbs/config')
 const mongoose = require('mongoose')
 
 
+const session = require('koa-generic-session')
+const Redis = require('koa-redis')
 
 // error handler
 onerror(app)
+
+app.keys = ['keys', 'keyskeys']
+app.use(session({
+  key:'mt',
+  prefix: 'mtpr',
+  store: new Redis()
+}))
+
 
 // middlewares
 app.use(bodyparser({
